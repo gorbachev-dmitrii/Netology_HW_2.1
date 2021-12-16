@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     private let fileManager = FileManager.default
     var content: [URL] = []
     
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.delegate = self
@@ -39,9 +40,6 @@ class ViewController: UIViewController {
     func loadDocumentFolder() {
         
         let documentsURL = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        
-        print(documentsURL)
-        
         content = try! fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: [])
         
 //        if !content.isEmpty {
@@ -70,16 +68,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath)
-        cell.textLabel!.text = content[indexPath.row].path
+        let path = content[indexPath.row].path
+        let lastString = path.components(separatedBy: "/").last
+        cell.textLabel!.text = lastString
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         let path = content[indexPath.row].path
-        
         try! fileManager.removeItem(atPath: path)
-        tableView.reloadData()
+        content.remove(at: indexPath.row)
+        self.tableView.deleteRows(at: [indexPath], with: .fade)
         print("row at \(indexPath) deleted")
     }
 }
@@ -92,7 +91,9 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         let imageData = image.pngData()
         let imageName = UUID().uuidString
         let fileUrl = documentsURL.appendingPathComponent(imageName)
-        try! fileManager.createFile(atPath: fileUrl.path, contents: imageData, attributes: nil)
+        fileManager.createFile(atPath: fileUrl.path, contents: imageData, attributes: nil)
+        content.append(fileUrl)
+        self.tableView.reloadData()
         self.dismiss(animated: true, completion: nil)
     }
 }
