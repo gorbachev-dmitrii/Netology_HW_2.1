@@ -7,9 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController {
     
     private let fileManager = FileManager.default
+    var content: [URL] = []
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -26,19 +27,30 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Добавить фото", style: .plain, target: self, action: #selector(displayImagePickerButtonTapped))
         view.addSubview(tableView)
         setupConstraints()
+        loadDocumentFolder()
     }
     
     @objc func displayImagePickerButtonTapped(_ sender:UIButton!) {
-            let myPickerController = UIImagePickerController()
-            myPickerController.delegate = self
-            self.present(myPickerController, animated: true, completion: nil)
-        }
+        let myPickerController = UIImagePickerController()
+        myPickerController.delegate = self
+        self.present(myPickerController, animated: true, completion: nil)
+    }
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
-        print("image selected")
-        self.dismiss(animated: true, completion: { () -> Void in
-            
-        })
+    func loadDocumentFolder() {
+        
+        let documentsURL = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        
+        print(documentsURL)
+        
+        content = try! fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: [])
+        
+//        if !content.isEmpty {
+//            content.forEach {
+//                print("url is: \($0.absoluteURL)")
+//            }
+//        } else {
+//            print("empty")
+//        }
     }
     
     func setupConstraints() {
@@ -53,13 +65,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return content.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath)
-         cell.textLabel!.text = "default text"
-         return cell
+        cell.textLabel!.text = content[indexPath.row].path
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let path = content[indexPath.row].path
+        
+        try! fileManager.removeItem(atPath: path)
+        tableView.reloadData()
+        print("row at \(indexPath) deleted")
+    }
+}
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let documentsURL = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        let image = info[.originalImage] as! UIImage
+        let imageData = image.pngData()
+        let imageName = UUID().uuidString
+        let fileUrl = documentsURL.appendingPathComponent(imageName)
+        try! fileManager.createFile(atPath: fileUrl.path, contents: imageData, attributes: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
