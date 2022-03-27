@@ -12,6 +12,7 @@
 		0D1C9A80275E951E00F62512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C9A7F275E951E00F62512 /* ViewController.swift */; };
 		0D1C9A85275E951E00F62512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D1C9A84275E951E00F62512 /* Assets.xcassets */; };
 		0D1C9A88275E951E00F62512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D1C9A86275E951E00F62512 /* LaunchScreen.storyboard */; };
+		0D28DF8427F07F640061E475 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D28DF8327F07F640061E475 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		0D1C9A84275E951E00F62512 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D1C9A87275E951E00F62512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D1C9A89275E951E00F62512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D28DF8327F07F640061E475 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				0D1C9A84275E951E00F62512 /* Assets.xcassets */,
 				0D1C9A86275E951E00F62512 /* LaunchScreen.storyboard */,
 				0D1C9A89275E951E00F62512 /* Info.plist */,
+				0D28DF8327F07F640061E475 /* LoginViewController.swift */,
 			);
 			path = Netology_HW_2.1;
 			sourceTree = "<group>";
@@ -134,6 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D28DF8427F07F640061E475 /* LoginViewController.swift in Sources */,
 				0D1C9A80275E951E00F62512 /* ViewController.swift in Sources */,
 				0D1C9A7C275E951E00F62512 /* AppDelegate.swift in Sources */,
 				0D1C9A7E275E951E00F62512 /* SceneDelegate.swift in Sources */,
