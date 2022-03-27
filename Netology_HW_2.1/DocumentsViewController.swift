@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DocumentsViewController: UIViewController {
     
     private let fileManager = FileManager.default
     var content: [URL] = []
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension DocumentsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return content.count
     }
@@ -83,7 +83,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension DocumentsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let documentsURL = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)

@@ -9,17 +9,18 @@
 /* Begin PBXBuildFile section */
 		0D1C9A7C275E951E00F62512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C9A7B275E951E00F62512 /* AppDelegate.swift */; };
 		0D1C9A7E275E951E00F62512 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C9A7D275E951E00F62512 /* SceneDelegate.swift */; };
-		0D1C9A80275E951E00F62512 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C9A7F275E951E00F62512 /* ViewController.swift */; };
+		0D1C9A80275E951E00F62512 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C9A7F275E951E00F62512 /* DocumentsViewController.swift */; };
 		0D1C9A85275E951E00F62512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D1C9A84275E951E00F62512 /* Assets.xcassets */; };
 		0D1C9A88275E951E00F62512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D1C9A86275E951E00F62512 /* LaunchScreen.storyboard */; };
 		0D28DF8427F07F640061E475 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D28DF8327F07F640061E475 /* LoginViewController.swift */; };
+		0D28DF8727F098E00061E475 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 0D28DF8627F098E00061E475 /* KeychainAccess */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D1C9A78275E951E00F62512 /* Netology_HW_2.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netology_HW_2.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D1C9A7B275E951E00F62512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D1C9A7D275E951E00F62512 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0D1C9A7F275E951E00F62512 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0D1C9A7F275E951E00F62512 /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
 		0D1C9A84275E951E00F62512 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D1C9A87275E951E00F62512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D1C9A89275E951E00F62512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D28DF8727F098E00061E475 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +60,7 @@
 			children = (
 				0D1C9A7B275E951E00F62512 /* AppDelegate.swift */,
 				0D1C9A7D275E951E00F62512 /* SceneDelegate.swift */,
-				0D1C9A7F275E951E00F62512 /* ViewController.swift */,
+				0D1C9A7F275E951E00F62512 /* DocumentsViewController.swift */,
 				0D1C9A84275E951E00F62512 /* Assets.xcassets */,
 				0D1C9A86275E951E00F62512 /* LaunchScreen.storyboard */,
 				0D1C9A89275E951E00F62512 /* Info.plist */,
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = Netology_HW_2.1;
+			packageProductDependencies = (
+				0D28DF8627F098E00061E475 /* KeychainAccess */,
+			);
 			productName = Netology_HW_2.1;
 			productReference = 0D1C9A78275E951E00F62512 /* Netology_HW_2.1.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = 0D1C9A6F275E951E00F62512;
+			packageReferences = (
+				0D28DF8527F098E00061E475 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = 0D1C9A79275E951E00F62512 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,7 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D28DF8427F07F640061E475 /* LoginViewController.swift in Sources */,
-				0D1C9A80275E951E00F62512 /* ViewController.swift in Sources */,
+				0D1C9A80275E951E00F62512 /* DocumentsViewController.swift in Sources */,
 				0D1C9A7C275E951E00F62512 /* AppDelegate.swift in Sources */,
 				0D1C9A7E275E951E00F62512 /* SceneDelegate.swift in Sources */,
 			);
@@ -350,6 +358,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0D28DF8527F098E00061E475 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0D28DF8627F098E00061E475 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D28DF8527F098E00061E475 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0D1C9A70275E951E00F62512 /* Project object */;
 }
