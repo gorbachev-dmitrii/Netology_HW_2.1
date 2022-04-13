@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
     private lazy var passwordInput: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Type in your password"
+        textField.placeholder = "Введите пароль"
         textField.borderStyle = .roundedRect
         return textField
     }()
@@ -40,20 +40,24 @@ class LoginViewController: UIViewController {
     
     @objc func loginButtonClicked() {
         if let input = passwordInput.text {
-            if input.count > 4 {
-                if tempPass == input {
-                    print("povtornii vvod")
-                    keychain["user"] = tempPass
+            if checkState() == 0 {
+                if input.count > 4 {
+                    if tempPass == input {
+                        keychain["user"] = tempPass
+                    } else {
+                        loginButton.setTitle("Повторите пароль", for: .normal)
+                        tempPass = input
+                    }
                 } else {
-                    loginButton.setTitle("Повторите пароль", for: .normal)
-                    tempPass = input
-                    print(tempPass)
+                    print("пароль менее 4 символов")
                 }
             } else {
-                print("пароль менее 4 символов")
+                if input == keychain["user"] {
+                    print("parol podhodit idem k VC")
+                } else {
+                    createAlert()
+                }
             }
-        } else {
-            print("password is nil")
         }
     }
     
@@ -69,14 +73,22 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    func checkState() {
+    private func checkState() -> Int {
         if keychain["user"] != nil {
             loginButton.setTitle("Введите пароль", for: .normal)
             print("Пароль был сохранен")
+            return 1
         } else {
             loginButton.setTitle("Создать пароль", for: .normal)
             print("Нет сохраненного пароля")
+            return 0
         }
+    }
+    
+    private func createAlert() {
+        let alert = UIAlertController(title: "Неверный пароль", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
 }
