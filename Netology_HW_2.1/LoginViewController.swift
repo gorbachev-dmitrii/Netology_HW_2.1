@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
     
     private let keychain = Keychain(service: "NetologyHW")
     private var tempPass = ""
+    
     private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +55,9 @@ class LoginViewController: UIViewController {
             } else {
                 if input == keychain["user"] {
                     print("parol podhodit idem k VC")
+                    let tabBar = TabBarController()
+                    view.window?.rootViewController = tabBar
+                    view.window?.makeKeyAndVisible()
                 } else {
                     createAlert()
                 }
