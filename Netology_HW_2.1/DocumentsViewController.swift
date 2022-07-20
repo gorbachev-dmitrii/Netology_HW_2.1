@@ -12,7 +12,6 @@ class DocumentsViewController: UIViewController {
     private let fileManager = FileManager.default
     var content: [URL] = []
     
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.delegate = self
@@ -22,10 +21,15 @@ class DocumentsViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var addButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Добавить фото", style: .plain, target: self, action: #selector(displayImagePickerButtonTapped))
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Добавить фото", style: .plain, target: self, action: #selector(displayImagePickerButtonTapped))
+        self.tabBarController?.navigationItem.rightBarButtonItems = [addButton]
         view.addSubview(tableView)
         setupConstraints()
         loadDocumentFolder()

@@ -17,9 +17,8 @@ class TabBarController: UITabBarController {
         firstTab.tabBarItem = tabOneBarItem
         
         let secondTab = SettingsViewController()
-        let tabTwoBarItem2 = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear"))
-        secondTab.tabBarItem = tabTwoBarItem2
-        
+        let tabTwoBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear"))
+        secondTab.tabBarItem = tabTwoBarItem
         
         self.viewControllers = [firstTab, secondTab]
     }

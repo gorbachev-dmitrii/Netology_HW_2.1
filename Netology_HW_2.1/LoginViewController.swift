@@ -55,8 +55,8 @@ class LoginViewController: UIViewController {
             } else {
                 if input == keychain["user"] {
                     print("parol podhodit idem k VC")
-                    let tabBar = TabBarController()
-                    view.window?.rootViewController = tabBar
+                    let navigationController = UINavigationController.init(rootViewController: TabBarController())
+                    view.window?.rootViewController = navigationController
                     view.window?.makeKeyAndVisible()
                 } else {
                     createAlert()

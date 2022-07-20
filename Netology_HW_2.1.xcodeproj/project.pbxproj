@@ -64,11 +64,11 @@
 			children = (
 				0D1C9A7B275E951E00F62512 /* AppDelegate.swift */,
 				0D1C9A7D275E951E00F62512 /* SceneDelegate.swift */,
-				0D1C9A7F275E951E00F62512 /* DocumentsViewController.swift */,
 				0D1C9A84275E951E00F62512 /* Assets.xcassets */,
 				0D1C9A86275E951E00F62512 /* LaunchScreen.storyboard */,
 				0D1C9A89275E951E00F62512 /* Info.plist */,
 				0D28DF8327F07F640061E475 /* LoginViewController.swift */,
+				0D1C9A7F275E951E00F62512 /* DocumentsViewController.swift */,
 				0DF2F0CC2807437300DDE321 /* SettingsViewController.swift */,
 				0DF2F0CE280743AF00DDE321 /* TabBarController.swift */,
 			);
