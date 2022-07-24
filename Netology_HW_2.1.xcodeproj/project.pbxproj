@@ -14,6 +14,7 @@
 		0D1C9A88275E951E00F62512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D1C9A86275E951E00F62512 /* LaunchScreen.storyboard */; };
 		0D28DF8427F07F640061E475 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D28DF8327F07F640061E475 /* LoginViewController.swift */; };
 		0D28DF8727F098E00061E475 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 0D28DF8627F098E00061E475 /* KeychainAccess */; };
+		0DA2CB79288DBAB600FE86FF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2CB78288DBAB600FE86FF /* Constants.swift */; };
 		0DF2F0CD2807437300DDE321 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF2F0CC2807437300DDE321 /* SettingsViewController.swift */; };
 		0DF2F0CF280743AF00DDE321 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF2F0CE280743AF00DDE321 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
@@ -27,6 +28,7 @@
 		0D1C9A87275E951E00F62512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D1C9A89275E951E00F62512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D28DF8327F07F640061E475 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0DA2CB78288DBAB600FE86FF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0DF2F0CC2807437300DDE321 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0DF2F0CE280743AF00DDE321 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +73,7 @@
 				0D1C9A7F275E951E00F62512 /* DocumentsViewController.swift */,
 				0DF2F0CC2807437300DDE321 /* SettingsViewController.swift */,
 				0DF2F0CE280743AF00DDE321 /* TabBarController.swift */,
+				0DA2CB78288DBAB600FE86FF /* Constants.swift */,
 			);
 			path = Netology_HW_2.1;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				0D1C9A7C275E951E00F62512 /* AppDelegate.swift in Sources */,
 				0DF2F0CF280743AF00DDE321 /* TabBarController.swift in Sources */,
 				0DF2F0CD2807437300DDE321 /* SettingsViewController.swift in Sources */,
+				0DA2CB79288DBAB600FE86FF /* Constants.swift in Sources */,
 				0D1C9A7E275E951E00F62512 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,9 +10,15 @@ import UIKit
 class SettingsViewController: UITableViewController {
     
     private let userDefaults = UserDefaults.standard
+    
     private lazy var switchSortSetting: UISwitch = {
         let switchView = UISwitch(frame: .zero)
         switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+        if userDefaults.value(forKey: Constants.sortingSetting) as! Int == 1 {
+            switchView.isOn = true
+        } else {
+            switchView.isOn = false
+        }
         return switchView
     }()
     
@@ -20,16 +26,10 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if userDefaults.value(forKey: "sort") != nil {
-            print("+++")
-        } else {
-            switchSortSetting.setOn(false, animated: true)
-            print("---")
-        }
-        //print(userDefaults.value(forKey: "sorting")!)
+    @objc func switchChanged(_ sender : UISwitch!){
+        userDefaults.setValue(sender.isOn, forKey: Constants.sortingSetting)
     }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -54,16 +54,14 @@ class SettingsViewController: UITableViewController {
         
     }
     
-    @objc func switchChanged(_ sender : UISwitch!){
-        userDefaults.setValue(sender.isOn, forKey: "sorting")
-        print(userDefaults.value(forKey: "sorting")!)
-    }
-    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
+        switch section {
+        case 0:
             return "Сортировка"
-        } else {
+        case 1:
             return "Пароль"
+        default:
+            return "В разработке"
         }
     }
 }

@@ -21,6 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = LoginViewController()
         self.window = window
         window.makeKeyAndVisible()
+        
+        if UserDefaults.standard.value(forKey: Constants.sortingSetting) == nil {
+            UserDefaults.standard.setValue(1, forKey: Constants.sortingSetting)
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

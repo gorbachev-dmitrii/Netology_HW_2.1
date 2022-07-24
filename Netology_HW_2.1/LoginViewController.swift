@@ -10,7 +10,7 @@ import KeychainAccess
 
 class LoginViewController: UIViewController {
     
-    private let keychain = Keychain(service: "NetologyHW")
+    private let keychain = Keychain(service: Constants.keychainService)
     private var tempPass = ""
     
     private lazy var loginButton: UIButton = {
@@ -42,24 +42,23 @@ class LoginViewController: UIViewController {
     @objc func loginButtonClicked() {
         if let input = passwordInput.text {
             if checkState() == 0 {
-                if input.count > 4 {
+                if input.count > Constants.passwordLength {
                     if tempPass == input {
-                        keychain["user"] = tempPass
+                        keychain[Constants.userName] = tempPass
                     } else {
                         loginButton.setTitle("Повторите пароль", for: .normal)
                         tempPass = input
                     }
                 } else {
-                    print("пароль менее 4 символов")
+                    passwordLengthAlert()
                 }
             } else {
-                if input == keychain["user"] {
-                    print("parol podhodit idem k VC")
+                if input == keychain[Constants.userName] {
                     let navigationController = UINavigationController.init(rootViewController: TabBarController())
                     view.window?.rootViewController = navigationController
                     view.window?.makeKeyAndVisible()
                 } else {
-                    createAlert()
+                    incorrectPasswordAlert()
                 }
             }
         }
@@ -78,19 +77,23 @@ class LoginViewController: UIViewController {
     }
     
     private func checkState() -> Int {
-        if keychain["user"] != nil {
+        if keychain[Constants.userName] != nil {
             loginButton.setTitle("Введите пароль", for: .normal)
-            print("Пароль был сохранен")
             return 1
         } else {
             loginButton.setTitle("Создать пароль", for: .normal)
-            print("Нет сохраненного пароля")
             return 0
         }
     }
     
-    private func createAlert() {
+    private func incorrectPasswordAlert() {
         let alert = UIAlertController(title: "Неверный пароль", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    private func passwordLengthAlert() {
+        let alert = UIAlertController(title: "Недопустимая длина пароля", message: "Создайте пароль длинной более 4-х символов", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }

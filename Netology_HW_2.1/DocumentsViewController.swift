@@ -11,7 +11,8 @@ class DocumentsViewController: UIViewController {
     
     private let fileManager = FileManager.default
     var content: [URL] = []
-    
+    private let userDefaults = UserDefaults.standard
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.delegate = self
@@ -33,6 +34,14 @@ class DocumentsViewController: UIViewController {
         view.addSubview(tableView)
         setupConstraints()
         loadDocumentFolder()
+        print(content[0])
+        print(content[3])
+        if userDefaults.value(forKey: Constants.sortingSetting) as! Int == 0 {
+                print("не нужна сортировка по алфавиту")
+            } else {
+                print("давай-ка отсортируем")
+            }
+        
     }
     
     @objc func displayImagePickerButtonTapped(_ sender:UIButton!) {
