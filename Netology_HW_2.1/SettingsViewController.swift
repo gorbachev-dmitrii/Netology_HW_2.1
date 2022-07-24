@@ -9,12 +9,10 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
-    private let userDefaults = UserDefaults.standard
-    
     private lazy var switchSortSetting: UISwitch = {
         let switchView = UISwitch(frame: .zero)
         switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
-        if userDefaults.value(forKey: Constants.sortingSetting) as! Int == 1 {
+        if Constants.settings.bool(forKey: Constants.sortingSetting) {
             switchView.isOn = true
         } else {
             switchView.isOn = false
@@ -26,8 +24,8 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-    @objc func switchChanged(_ sender : UISwitch!){
-        userDefaults.setValue(sender.isOn, forKey: Constants.sortingSetting)
+    @objc private func switchChanged(_ sender : UISwitch!){
+        Constants.settings.set(sender.isOn, forKey: Constants.sortingSetting)
     }
     
     // MARK: - Table view data source
@@ -48,10 +46,17 @@ class SettingsViewController: UITableViewController {
             return cell
         } else {
             let cell = UITableViewCell(style: .default, reuseIdentifier: "cell1")
-            cell.textLabel?.text = "Тут кнопка сменить пароль"
+            cell.textLabel?.text = "Cменить пароль"
+            cell.accessoryType = .detailButton
             return cell
         }
         
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print(indexPath.row)
+        let vc = LoginViewController()
+        self.present(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

@@ -12,4 +12,5 @@ enum Constants {
     static let passwordLength: Int = 4
     static let keychainService: String = "NetologyHW"
     static let userName: String = "user"
+    static let settings = UserDefaults.standard
 }
