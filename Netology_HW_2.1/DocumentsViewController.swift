@@ -7,11 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DocumentsViewController: UIViewController {
     
     private let fileManager = FileManager.default
     var content: [URL] = []
-    
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -22,36 +21,42 @@ class ViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var addButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Добавить фото", style: .plain, target: self, action: #selector(displayImagePickerButtonTapped))
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Добавить фото", style: .plain, target: self, action: #selector(displayImagePickerButtonTapped))
+        self.tabBarController?.navigationItem.rightBarButtonItems = [addButton]
         view.addSubview(tableView)
         setupConstraints()
         loadDocumentFolder()
     }
     
-    @objc func displayImagePickerButtonTapped(_ sender:UIButton!) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear")
+        if Constants.settings.bool(forKey: Constants.sortingSetting) {
+            // тестовый метод для проверки обновления tableView
+            content.shuffle()
+            tableView.reloadData()
+        }
+    }
+    
+    @objc private func displayImagePickerButtonTapped(_ sender:UIButton!) {
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
         self.present(myPickerController, animated: true, completion: nil)
     }
     
-    func loadDocumentFolder() {
-        
+    private func loadDocumentFolder() {
         let documentsURL = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         content = try! fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: [])
-        
-//        if !content.isEmpty {
-//            content.forEach {
-//                print("url is: \($0.absoluteURL)")
-//            }
-//        } else {
-//            print("empty")
-//        }
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -61,7 +66,8 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension DocumentsViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return content.count
     }
@@ -83,7 +89,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension DocumentsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let documentsURL = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
